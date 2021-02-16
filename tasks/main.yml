@@ -28,7 +28,7 @@
   assert:
     that:
       - (http | bool) or (https | bool)
-      - not (http and https | bool)
+      - not ((http | bool) and (https | bool))
     fail_msg: You should either enable http or https.
 
 - name: Install aminvakil.create_user role from ansible-galaxy

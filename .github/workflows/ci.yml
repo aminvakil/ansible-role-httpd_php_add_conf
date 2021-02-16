@@ -43,7 +43,7 @@ jobs:
       fail-fast: false
       matrix:
         distro: [debian10]
-        httpd_initial: [true, false]
+        httpd_initial: [true]
         http: [true, false]
         https: [true, false]
 

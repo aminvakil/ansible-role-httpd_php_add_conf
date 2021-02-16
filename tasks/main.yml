@@ -15,6 +15,7 @@
   command: ls /etc/apache2
   register: result
   changed_when: false
+  ignore_errors: true
 
 - name: Fail when apache2 has not been installed
   assert:

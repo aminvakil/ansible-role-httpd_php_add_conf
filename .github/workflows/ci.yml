@@ -40,6 +40,7 @@ jobs:
     name: Molecule
     runs-on: ubuntu-latest
     strategy:
+      fail-fast: false
       matrix:
         distro: [debian10]
         httpd_initial: [true, false]

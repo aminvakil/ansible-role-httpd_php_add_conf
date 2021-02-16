@@ -30,6 +30,12 @@
       - not (http == 1 and https == 1)
     fail_msg: You should either enable http or https.
 
+- name: Install aminvakil.create_user role from ansible-galaxy
+  command: ansible-galaxy install aminvakil.create_user
+  register: result
+  changed_when: '"already installed" not in result.stdout'
+  delegate_to: localhost
+
 - name: Include create user role
   include_role:
     name: aminvakil.create_user

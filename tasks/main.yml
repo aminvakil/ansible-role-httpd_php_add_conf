@@ -1,1 +1,32 @@
 ---
+- name: Check if apache2 is installed or not
+  command: ls /etc/apache2
+  register: result
+  changed_when: false
+
+- name: Fail when apache2 has not been installed
+  assert:
+    that:
+      - result.rc == 0
+      - '"No such" not in result.stdout'
+    fail_msg: Apache has not been installed, use aminvakil.httpd_initial to install apache2 first.
+
+- name: Fail when both http and https are false or true.
+  assert:
+    that:
+      - not (http == 0 and https == 0)
+      - not (http == 1 and https == 1)
+    fail_msg: You should either enable http or https.
+
+- name: Include create user role
+  include_role:
+    name: aminvakil.create_user
+    allow_duplicates: no
+
+- name: Include http only configuration
+  include_tasks: http.yml
+  when: http | bool
+
+- name: Include https only configuration
+  include_tasks: https.yml
+  when: https | bool

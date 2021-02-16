@@ -42,6 +42,9 @@ jobs:
     strategy:
       matrix:
         distro: [debian10]
+        httpd_initial: [true, false]
+        http: [true, false]
+        https: [true, false]
 
     steps:
       - name: Check out the codebase.
@@ -63,3 +66,6 @@ jobs:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
           MOLECULE_DISTRO: ${{ matrix.distro }}
+          HTTPD_INITIAL: ${{ matrix.httpd_initial }}
+          HTTP: ${{ matrix.http }}
+          HTTPS: ${{ matrix.https }}

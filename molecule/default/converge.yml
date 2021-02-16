@@ -1,5 +1,9 @@
 ---
 - name: Converge
   hosts: all
+  vars:
+    httpd_initial: "{{ lookup('env', 'HTTPD_INITIAL') }}"
+    http: "{{ lookup('env', 'HTTP') }}"
+    https: "{{ lookup('env', 'HTTPS') }}"
   roles:
     - role: aminvakil.httpd_add_vhost

@@ -27,7 +27,7 @@
 - name: Fail when both http and https are false or true.
   assert:
     that:
-      - (http or https) | bool
+      - (http | bool) or (https | bool)
       - not (http and https | bool)
     fail_msg: You should either enable http or https.
 

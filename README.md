@@ -1,7 +1,7 @@
 Role Name
 =========
 
-Template
+httpd_add_vhost
 
 Requirements
 ------------
@@ -22,7 +22,7 @@ Example Playbook
     - hosts: servers
       become: true
       roles:
-         - role: aminvakil.template
+         - role: aminvakil.httpd_add_vhost
 
 License
 -------

@@ -46,7 +46,7 @@
 
 - name: Install apache2-suexec-pristine
   apt:
-    name: apache2
+    name: apache2-suexec-pristine
     install_recommends: no
     state: present
   notify: restart apache2

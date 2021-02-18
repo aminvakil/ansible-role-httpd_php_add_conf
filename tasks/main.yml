@@ -44,6 +44,23 @@
     name: aminvakil.create_user
     allow_duplicates: no
 
+- name: Install apache2-suexec-pristine
+  apt:
+    name: apache2
+    install_recommends: no
+    state: present
+  notify: restart apache2
+
+- name: Enable suexec module
+  community.general.apache2_module:
+    name: "{{ item }}"
+    state: present
+  notify: restart apache2
+  loop:
+    - suexec
+    - proxy
+    - proxy_http
+
 - name: Include http only configuration
   include_tasks: http.yml
   when: http | bool

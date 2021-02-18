@@ -6,7 +6,7 @@
     mode: '0640'
   notify: restart apache2
 
-- name: Create symlink for Apache conf (http only)
+- name: Create symlink for Apache conf (https)
   file:
     src: /etc/apache2/sites-available/{{ user_name }}.conf
     dest: /etc/apache2/sites-enabled/{{ user_name }}.conf

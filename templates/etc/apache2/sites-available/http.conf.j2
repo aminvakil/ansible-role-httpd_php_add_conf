@@ -1,0 +1,23 @@
+<VirtualHost *:80>
+ ServerName {{ domain_name }}
+ ServerAlias {{ domain_alias }}
+ UseCanonicalName Off
+ SuexecUserGroup {{ user_name }} {{ user_name }}
+ ServerAdmin {{ sysadmin_email }}
+ DocumentRoot /srv/{{ user_name }}/public_html
+ CustomLog ${APACHE_LOG_DIR}/{{ user_name }}_log combined
+ <Proxy "unix:/var/run/php-fpm/{{ user_name }}.sock|fcgi://php-fpm">
+ ProxySet disablereuse=off
+ </Proxy>
+ <FilesMatch \.php$>
+ SetHandler proxy:fcgi://php-fpm
+ </FilesMatch>
+ <Directory /srv/{{ user_name }}/public_html>
+ AllowOverride All
+ Require all granted
+ Options -FollowSymLinks -Includes -ExecCGI -Indexes -MultiViews +SymLinksIfOwnerMatch
+ <LimitExcept GET POST HEAD>
+  deny from all
+ </LimitExcept>
+ </Directory>
+</VirtualHost>

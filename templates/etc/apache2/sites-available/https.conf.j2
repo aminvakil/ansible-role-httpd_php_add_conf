@@ -1,0 +1,42 @@
+MDomain {{ domain_name }}
+MDCertificateAgreement accepted
+
+<VirtualHost *:80>
+ ServerName {{ domain_name }}
+ ServerAlias {{ domain_alias }}
+ UseCanonicalName Off
+ SuexecUserGroup {{ user_name }} {{ user_name }}
+ ServerAdmin {{ sysadmin_email }}
+ CustomLog ${APACHE_LOG_DIR}/{{ user_name }}_log combined
+ RewriteEngine on
+ RewriteCond %{SERVER_NAME} ={{ domain_name }}
+ RewriteRule ^ https://%{SERVER_NAME}%{REQUEST_URI} [END,NE,R=permanent]
+ Options -FollowSymLinks -Includes -ExecCGI -Indexes -MultiViews +SymLinksIfOwnerMatch
+</VirtualHost>
+<VirtualHost *:443>
+ ServerName {{ domain_name }}
+ ServerAlias {{ domain_alias }}
+ UseCanonicalName Off
+ SuexecUserGroup {{ user_name }} {{ user_name  }}
+ ServerAdmin {{ sysadmin_email }}
+ DocumentRoot /srv/{{ user_name }}/public_html
+ CustomLog ${APACHE_LOG_DIR}/{{ user_name }}_ssl_log combined
+ SSLEngine on
+ SSLVerifyClient none
+ <Proxy "unix:/var/run/php-fpm/{{ user_name }}.sock|fcgi://php-fpm">
+ ProxySet disablereuse=off
+ </Proxy>
+ <FilesMatch \.php$>
+ SetHandler proxy:fcgi://php-fpm
+ </FilesMatch>
+ <Directory /srv/{{ user_name }}/public_html>
+ AllowOverride All
+ Require all granted
+ SSLRequireSSL
+ Options -FollowSymLinks -Includes -ExecCGI -Indexes -MultiViews +SymLinksIfOwnerMatch
+ <LimitExcept GET POST HEAD>
+  deny from all
+ </LimitExcept>
+ </Directory>
+ Protocols h2 h2c http/1.1
+</VirtualHost>

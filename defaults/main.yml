@@ -2,3 +2,7 @@
 httpd_initial: false
 http: false
 https: false
+domain_name: example.org
+domain_alias: www.example.org
+sysadmin_email: info@example.org
+user_name: example

@@ -44,8 +44,20 @@ jobs:
       matrix:
         distro: [debian10]
         httpd_initial: [true]
-        http: [true, false]
-        https: [true, false]
+        include:
+          - http: true
+            https: true
+            experimental: true
+
+          - http: true
+            https: false
+
+          - http: false
+            https: true
+
+          - http: false
+            https: false
+            experimental: true
 
     steps:
       - name: Check out the codebase.

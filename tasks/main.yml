@@ -4,6 +4,7 @@
       command: ansible-galaxy install aminvakil.httpd_initial
       register: result
       changed_when: '"already installed" not in result.stderr'
+      become: false
       delegate_to: localhost
 
     - name: Install apache

@@ -36,6 +36,7 @@
   command: ansible-galaxy install aminvakil.create_user
   register: result
   changed_when: '"already installed" not in result.stderr'
+  become: false
   delegate_to: localhost
 
 - name: Include create user role

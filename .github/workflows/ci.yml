@@ -42,14 +42,15 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        - distro: debian10
-          httpd_initial: true
-          http: true
-          https: false
-        - distro: debian10
-          httpd_initial: true
-          http: false
-          https: true
+        include:
+          - distro: debian10
+            httpd_initial: true
+            http: true
+            https: false
+          - distro: debian10
+            httpd_initial: true
+            http: false
+            https: true
 
     steps:
       - name: Check out the codebase.

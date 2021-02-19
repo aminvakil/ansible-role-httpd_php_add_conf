@@ -19,15 +19,11 @@
     autoremove: yes
     purge: yes
 
-- name: Enable md module
+- name: Enable rewrite module
   community.general.apache2_module:
-    name: "{{ item }}"
+    name: rewrite
     state: present
   notify: restart apache2
-  loop:
-    - md
-    - rewrite
-    - ssl
 
 - name: Create Apache conf (http redirect to https) for website
   template:

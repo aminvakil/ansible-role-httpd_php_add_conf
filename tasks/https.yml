@@ -8,9 +8,10 @@
 
 - name: Install apache2 from buster-backports
   apt:
-    name: apache2/buster-backports
+    name: apache2
+    default_release: buster-backports
     install_recommends: no
-    state: present
+    state: latest
   notify: restart apache2
 
 - name: Removing unneccessary packages

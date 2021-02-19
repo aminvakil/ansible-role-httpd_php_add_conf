@@ -1,4 +1,14 @@
 ---
+- name: Enable md module
+  community.general.apache2_module:
+    name: "{{ item }}"
+    state: present
+  notify: restart apache2
+  loop:
+    - md
+    - rewrite
+    - ssl
+
 - name: Create Apache conf (http redirect to https) for website
   template:
     src: templates/etc/apache2/sites-available/https.conf.j2

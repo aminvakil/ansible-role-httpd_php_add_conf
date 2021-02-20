@@ -51,6 +51,11 @@ jobs:
             httpd_initial: true
             http: false
             https: true
+          - distro: debian10
+            httpd_initial: true
+            http: false
+            https: true
+            staging: false
 
     steps:
       - name: Check out the codebase.

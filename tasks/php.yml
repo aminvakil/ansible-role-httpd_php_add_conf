@@ -3,11 +3,17 @@
   community.general.apache2_module:
     name: proxy_fcgi
     state: present
-  notify: restart apache2
+  notify: restart web services
+
+- name: Remove unnecessary files (default php-fpm conf)
+  file:
+    path: /etc/php/7.3/fpm/pool.d/www.conf
+    state: absent
+  notify: restart web services
 
 - name: Create php-fpm conf
   template:
     src: templates/etc/php/7.3/fpm/pool.d/php.conf.j2
     dest: /etc/php/7.3/fpm/pool.d/{{ user_name }}.conf
     mode: 0600
-  notify: restart php-fpm
+  notify: restart web services

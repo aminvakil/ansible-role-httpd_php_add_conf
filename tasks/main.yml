@@ -51,7 +51,7 @@
     state: present
   notify: restart apache2
 
-- name: Enable suexec module
+- name: Enable necessary modules
   community.general.apache2_module:
     name: "{{ item }}"
     state: present

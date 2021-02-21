@@ -6,5 +6,6 @@
     http: "{{ lookup('env', 'HTTP') }}"
     https: "{{ lookup('env', 'HTTPS') }}"
     staging: "{{ lookup('env', 'STAGING') }}"
+    php: "{{ lookup('env', 'PHP') }}"
   roles:
     - role: aminvakil.httpd_php_add_conf

@@ -68,3 +68,20 @@
 - name: Include https only configuration
   include_tasks: https.yml
   when: https | bool
+
+- block:
+    - name: Install aminvakil.php_initial role from ansible-galaxy
+      command: ansible-galaxy install aminvakil.php_initial
+      register: result
+      changed_when: '"already installed" not in result.stderr'
+      become: false
+      delegate_to: localhost
+
+    - name: Install php
+      include_role:
+        name: aminvakil.php_initial
+
+    - name: Include php configuration
+      include_tasks: php.yml
+      when: php | bool
+  when: php_initial | bool

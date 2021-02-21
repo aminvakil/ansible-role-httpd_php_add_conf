@@ -1,8 +1,8 @@
 ---
 galaxy_info:
   author: Amin Vakil
-  role_name: httpd_add_vhost
-  description: Adds Apache VirtualHost on Debian Buster
+  role_name: httpd_php_add_conf
+  description: Adds Apache VirtualHost and PHP Configuration on Debian Buster
   license: GPL-3.0-only
   min_ansible_version: 2.1
   platforms:

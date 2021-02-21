@@ -1,7 +1,7 @@
 Role Name
 =========
 
-httpd_add_vhost
+httpd_php_add_conf
 
 Requirements
 ------------
@@ -22,7 +22,7 @@ Example Playbook
     - hosts: servers
       become: true
       roles:
-         - role: aminvakil.httpd_add_vhost
+         - role: aminvakil.httpd_php_add_conf
 
 License
 -------

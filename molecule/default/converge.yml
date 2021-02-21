@@ -7,4 +7,4 @@
     https: "{{ lookup('env', 'HTTPS') }}"
     staging: "{{ lookup('env', 'STAGING') }}"
   roles:
-    - role: aminvakil.httpd_add_vhost
+    - role: aminvakil.httpd_php_add_conf

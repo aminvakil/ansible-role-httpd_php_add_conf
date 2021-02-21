@@ -37,3 +37,20 @@
     src: /etc/apache2/sites-available/{{ user_name }}.conf
     dest: /etc/apache2/sites-enabled/{{ user_name }}.conf
     state: link
+
+- name: Check if a certificate has been issued
+  stat:
+    path: /etc/apache2/md/domains/{{ domain_name }}/pubcert.pem
+  register: cert
+
+- block:
+    - name: Restart service in order to perform changes
+      systemd:
+        name: apache2
+        state: restarted
+
+    - name: Wait for certificates
+      wait_for:
+        path: /etc/apache2/md/staging/{{ domain_name }}/pubcert.pem
+  tags: molecule-notest
+  when: not cert.stat.exists

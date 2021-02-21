@@ -3,6 +3,7 @@
   hosts: all
   vars:
     httpd_initial: "{{ lookup('env', 'HTTPD_INITIAL') }}"
+    php_initial: "{{ lookup('env', 'PHP_INITIAL') }}"
     http: "{{ lookup('env', 'HTTP') }}"
     https: "{{ lookup('env', 'HTTPS') }}"
     staging: "{{ lookup('env', 'STAGING') }}"

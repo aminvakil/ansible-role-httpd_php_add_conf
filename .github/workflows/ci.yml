@@ -45,21 +45,25 @@ jobs:
         include:
           - distro: debian10
             httpd_initial: true
+            php_initial: true
             http: true
             https: false
             php: false
           - distro: debian10
             httpd_initial: true
+            php_initial: true
             http: false
             https: true
             php: false
           - distro: debian10
             httpd_initial: true
+            php_initial: true
             http: true
             https: false
             php: true
           - distro: debian10
             httpd_initial: true
+            php_initial: true
             http: false
             https: true
             php: true

@@ -6,7 +6,7 @@
  ServerAdmin {{ sysadmin_email }}
  DocumentRoot /srv/{{ user_name }}/public_html
  CustomLog ${APACHE_LOG_DIR}/{{ user_name }}_log combined
- <Proxy "unix:/var/run/php-fpm/{{ user_name }}.sock|fcgi://php-fpm">
+ <Proxy "unix:/var/run/php/{{ user_name }}.sock|fcgi://php-fpm">
  ProxySet disablereuse=off
  </Proxy>
  <FilesMatch \.php$>

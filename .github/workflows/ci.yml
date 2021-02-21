@@ -89,5 +89,7 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           MOLECULE_DISTRO: ${{ matrix.distro }}
           HTTPD_INITIAL: ${{ matrix.httpd_initial }}
+          PHP_INITIAL: ${{ matrix.php_initial }}
           HTTP: ${{ matrix.http }}
           HTTPS: ${{ matrix.https }}
+          PHP: ${{ matrix.php }}

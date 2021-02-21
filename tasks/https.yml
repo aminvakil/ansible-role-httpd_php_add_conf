@@ -42,6 +42,7 @@
   stat:
     path: /etc/apache2/md/domains/{{ domain_name }}/pubcert.pem
   register: cert
+  tags: molecule-notest
 
 - block:
     - name: Restart service in order to perform changes

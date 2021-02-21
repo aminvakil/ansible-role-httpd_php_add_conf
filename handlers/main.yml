@@ -3,3 +3,8 @@
   systemd:
     name: apache2
     state: restarted
+
+- name: restart php-fpm
+  systemd:
+    name: php7.3-fpm
+    state: restarted

@@ -80,8 +80,20 @@
     - name: Install php
       include_role:
         name: aminvakil.php_initial
-
-    - name: Include php configuration
-      include_tasks: php.yml
-      when: php | bool
   when: php_initial | bool
+
+- name: Check if php is installed or not
+  command: ls /etc/php
+  register: result
+  changed_when: false
+  ignore_errors: true
+
+- name: Fail when php has not been installed
+  assert:
+    that:
+      - result.rc == 0
+      - '"No such" not in result.stdout'
+
+- name: Include php configuration
+  include_tasks: php.yml
+  when: php | bool

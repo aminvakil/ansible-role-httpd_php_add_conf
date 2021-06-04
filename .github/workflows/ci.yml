@@ -79,6 +79,9 @@ jobs:
         with:
           python-version: '3.x'
 
+      - name: Test install wheel.
+        run: pip3 install wheel
+
       - name: Install test dependencies.
         run: pip3 install ansible molecule[docker] docker
 

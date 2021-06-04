@@ -1,6 +1,4 @@
 ---
-collections:
-  - aminvakil.lamp
 galaxy_info:
   author: aminvakil
   role_name: httpd_php_add_conf

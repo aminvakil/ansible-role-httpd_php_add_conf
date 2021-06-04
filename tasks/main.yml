@@ -1,7 +1,7 @@
 ---
 - block:
-    - name: Install aminvakil.httpd_initial role from ansible-galaxy
-      command: ansible-galaxy install aminvakil.httpd_initial
+    - name: Install aminvakil.lamp from ansible-galaxy
+      command: ansible-galaxy collection install aminvakil.lamp
       register: result
       changed_when: '"already installed" not in result.stderr'
       become: false
@@ -9,7 +9,7 @@
 
     - name: Install apache
       include_role:
-        name: aminvakil.httpd_initial
+        name: aminvakil.lamp.httpd_initial
   when: httpd_initial | bool
 
 - name: Check if apache2 is installed or not
@@ -23,7 +23,7 @@
     that:
       - result.rc == 0
       - '"No such" not in result.stdout'
-    fail_msg: Apache has not been installed, use aminvakil.httpd_initial to install apache2 first.
+    fail_msg: Apache has not been installed, use aminvakil.lamp to install apache2 first.
 
 - name: Fail when both http and https are false or true.
   assert:
@@ -32,8 +32,8 @@
       - not ((http | bool) and (https | bool))
     fail_msg: You should either enable http or https.
 
-- name: Install aminvakil.create_user role from ansible-galaxy
-  command: ansible-galaxy install aminvakil.create_user
+- name: Install aminvakil.lamp collection from ansible-galaxy
+  command: ansible-galaxy collection install aminvakil.lamp
   register: result
   changed_when: '"already installed" not in result.stderr'
   become: false
@@ -41,7 +41,7 @@
 
 - name: Include create user role
   include_role:
-    name: aminvakil.create_user
+    name: aminvakil.lamp.create_user
     allow_duplicates: no
 
 - name: Install apache2-suexec-pristine
@@ -70,8 +70,8 @@
   when: https | bool
 
 - block:
-    - name: Install aminvakil.php_initial role from ansible-galaxy
-      command: ansible-galaxy install aminvakil.php_initial
+    - name: Install aminvakil.lamp collection from ansible-galaxy
+      command: ansible-galaxy collection install aminvakil.lamp
       register: result
       changed_when: '"already installed" not in result.stderr'
       become: false
@@ -79,7 +79,7 @@
 
     - name: Install php
       include_role:
-        name: aminvakil.php_initial
+        name: aminvakil.lamp.php_initial
   when: php_initial | bool
 
 - name: Check if php is installed or not

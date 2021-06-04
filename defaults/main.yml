@@ -4,6 +4,7 @@ http: false
 https: false
 php_initial: false
 php: false
+cloudflare: false
 domain_name: example.org
 domain_alias: www.example.org
 sysadmin_email: info@example.org

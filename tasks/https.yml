@@ -10,14 +10,14 @@
   apt:
     name: apache2
     default_release: buster-backports
-    install_recommends: no
+    install_recommends: false
     state: latest
   notify: restart apache2
 
 - name: Removing unneccessary packages
   apt:
-    autoremove: yes
-    purge: yes
+    autoremove: true
+    purge: true
 
 - name: Enable rewrite module
   community.general.apache2_module:

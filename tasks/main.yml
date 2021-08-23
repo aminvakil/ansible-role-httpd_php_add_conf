@@ -27,12 +27,12 @@
 - name: Include create user role
   include_role:
     name: aminvakil.lamp.create_user
-    allow_duplicates: no
+    allow_duplicates: false
 
 - name: Install apache2-suexec-pristine
   apt:
     name: apache2-suexec-pristine
-    install_recommends: no
+    install_recommends: false
     state: present
   notify: restart apache2
 

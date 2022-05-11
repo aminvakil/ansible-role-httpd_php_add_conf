@@ -45,7 +45,8 @@
   register: cert
   tags: molecule-notest
 
-- block:
+- name: Wait for certificates
+  block:
     - name: Restart service in order to perform changes
       systemd:
         name: apache2

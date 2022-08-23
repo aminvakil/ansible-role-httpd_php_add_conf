@@ -4,3 +4,4 @@ warn_list:
   - '403'
 skip_list:
   - fqcn-builtins
+  - name[casing]

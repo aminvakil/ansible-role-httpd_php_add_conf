@@ -2,6 +2,7 @@
 warn_list:
   - yaml
   - '403'
+  - key-order
 skip_list:
   - fqcn-builtins
   - name[casing]

@@ -1,24 +1,4 @@
 ---
-- name: Enable backports repository
-  apt_repository:
-    repo: deb http://deb.debian.org/debian/ buster-backports main
-    state: present
-    filename: backports
-    mode: '0640'
-
-- name: Install apache2 from buster-backports
-  apt:
-    name: apache2
-    default_release: buster-backports
-    install_recommends: false
-    state: latest
-  notify: restart apache2
-
-- name: Removing unneccessary packages
-  apt:
-    autoremove: true
-    purge: true
-
 - name: Enable rewrite module
   community.general.apache2_module:
     name: rewrite
